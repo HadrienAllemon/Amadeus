@@ -72,6 +72,10 @@ Bot.on("messageCreate", async (message) => {
         connection = await connectToChannel(message.member.voice.channel);
     }
 
+    else if (actualMsg === "leave"){
+        if (connection) destroyConnection(connection);
+    }
+
     // ------- MUSIC --------
 
     else if (actualMsg.startsWith("play")) {
@@ -266,6 +270,14 @@ async function connectToChannel(channel) {
     } catch (error) {
         connection.destroy();
         throw error;
+    }
+}
+
+async function destroyConnection(connection) {
+    try {
+        connection.destroy();
+    } catch (error){
+        console.log("could not destroy connection : ", error);
     }
 }
 
