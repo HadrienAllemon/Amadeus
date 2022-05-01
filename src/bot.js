@@ -269,12 +269,14 @@ async function connectToChannel(channel) {
         return connection;
     } catch (error) {
         connection.destroy();
+        
         throw error;
     }
 }
 
 async function destroyConnection(connection) {
     try {
+        connection.disconnect();
         connection.destroy();
     } catch (error){
         console.log("could not destroy connection : ", error);
