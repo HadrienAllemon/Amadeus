@@ -72,7 +72,7 @@ Bot.on("messageCreate", async (message) => {
         connection = await connectToChannel(message.member.voice.channel);
     }
 
-    else if (actualMsg === "leave"){
+    else if (actualMsg === "leave") {
         if (connection) destroyConnection(connection);
     }
 
@@ -253,6 +253,10 @@ Bot.on("messageCreate", async (message) => {
 
 
         message.channel.send({ embeds: messageEmbeds });
+    } else if (actualMsg.startsWith("ball")) {
+        messageEmbed = new MessageEmbed()
+            .setImage("https://cdn.discordapp.com/attachments/588843528550088709/997241679755104316/EYZi0aLXQAE9pff_1.jpg");
+        message.channel.send({ embeds: [messageEmbed] });
     }
 });
 
@@ -269,7 +273,7 @@ async function connectToChannel(channel) {
         return connection;
     } catch (error) {
         connection.destroy();
-        
+
         throw error;
     }
 }
@@ -278,7 +282,7 @@ async function destroyConnection(connection) {
     try {
         connection.disconnect();
         connection.destroy();
-    } catch (error){
+    } catch (error) {
         console.log("could not destroy connection : ", error);
     }
 }
