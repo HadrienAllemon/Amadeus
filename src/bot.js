@@ -89,7 +89,7 @@ Bot.on("messageCreate", async (message) => {
         let link;
         // remove the first word of the string
         const linkOrKeyword = message.content.substring(message.content.indexOf(" ")).trim();
-        if (linkOrKeyword.length === 0 || !/\s/.test(message.content)) audioPlayer.unpause();
+        if (linkOrKeyword.length === 0 || !/\s/.test(message.content)) audioPlayer?.unpause();
         if (isValidURL(linkOrKeyword)) link = linkOrKeyword;
         else {
             info = await getVideoInfoFromKeyword(linkOrKeyword);
@@ -143,7 +143,7 @@ Bot.on("messageCreate", async (message) => {
     else if (actualMsg.startsWith("earrape")) {
         if (!audioPlayer || !connection || !audioPlayer.ressource) return false;
 
-        if (message.author.tag === "Orion#0010" || message.author.tag === "Gistero#8632"){
+        if (message.author.tag?.toLowerCase() === "orion#0010" || message.author.tag?.toLowerCase() === "gistero#8632"){
             message.member.voice.disconnect("You tried to rape our ears !");
             message.channel.send(`${message.member.username} tried to rape your ears. He was sentenced with DEATH 💀`)
         } else {
@@ -265,6 +265,20 @@ Bot.on("messageCreate", async (message) => {
     }
 });
 
+// on all user leave
+Bot.on('voiceStateUpdate', async (oldState, newState) => {
+
+        // if nobody left the channel in question, return.
+        if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel)
+          return;
+      
+        if (!oldState.channel.members.size - 1) 
+          setTimeout(() => { // if 1 (you), wait five minutes
+            if (!oldState.channel.members.size - 1 && connection?.state?.status !== "destroyed") // if there's still 1 member, 
+             destroyConnection(connection);
+           }, 1000); 
+});
+
 async function connectToChannel(channel) {
     const connection = joinVoiceChannel({
         channelId: channel.id,
@@ -287,6 +301,7 @@ async function destroyConnection(connection) {
     try {
         connection.disconnect();
         connection.destroy();
+        connection = null;
     } catch (error) {
         console.log("could not destroy connection : ", error);
     }

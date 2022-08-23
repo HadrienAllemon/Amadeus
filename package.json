@@ -24,6 +24,6 @@
     "moment": "^2.29.1",
     "snoowrap": "^1.23.0",
     "youtube-dl-exec": "^2.0.2",
-    "ytdl-core": "^4.9.2"
+    "ytdl-core": "^4.11.0"
   }
 }

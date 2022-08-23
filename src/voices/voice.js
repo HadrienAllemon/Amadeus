@@ -1,4 +1,4 @@
-const { createAudioPlayer, NoSubscriberBehavior,getVoiceConnection,createAudioResource } = require('@discordjs/voice');
+const { createAudioPlayer, NoSubscriberBehavior, getVoiceConnection, createAudioResource } = require('@discordjs/voice');
 const libwrap = require("libsodium-wrappers");
 const { join } = require('path');
 
@@ -26,7 +26,7 @@ class AmadeusAudioPlayer {
     pause() {
         this.audioPlayer.pause();
     }
-    unpause(){
+    unpause() {
         this.audioPlayer.unpause()
     }
     play() {
@@ -34,25 +34,26 @@ class AmadeusAudioPlayer {
         if (this.audioPlayer == undefined) this.createAudioPlayer();
         this.ressource.volume.setVolume(0.5);
         this.audioPlayer.play(this.ressource);
-        
+
         connection.subscribe(this.audioPlayer);
         this.audioPlayer.on('error', error => {
             console.error(`Error: ${error.message} with resource ${error.resource.metadata.title}`);
             this.audioPlayer.stop();
         });
-        
+
     }
-    earRape(){
-        if (!this.ressource || !this.connectionId) return false;
-        console.log(this.earRaping);
-        if (this.earRaping){
+    earRape() {
+        console.log(this.ressource.volume.volume)
+        if (this.ressource.volume.volume === 100) {
             this.ressource.volume.setVolume(0.5);
             this.earRaping = false;
+            console.log("starting ear rape")
         } else {
             this.ressource.volume.setVolume(100);
             this.earRaping = true;
+            console.log("starting ear rape")
         }
-        
+
     }
 }
 
