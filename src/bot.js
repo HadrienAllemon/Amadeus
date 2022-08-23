@@ -12,7 +12,7 @@ const Snoowrap = require("snoowrap");
 const Bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_BANS] });
 const { join } = require('path');
 
-
+console.log("Started");
 Bot.on('ready', () => {
     console.log(`${Bot.user.username} has logged in`)
 });
