@@ -145,7 +145,7 @@ Bot.on("messageCreate", async (message) => {
 
         if (message.author.tag?.toLowerCase() === "orion#0010" || message.author.tag?.toLowerCase() === "gistero#8632"){
             message.member.voice.disconnect("You tried to rape our ears !");
-            message.channel.send(`${message.member.username} tried to rape your ears. He was sentenced with DEATH 💀`)
+            message.channel.send(`${message.author.tag} tried to rape your ears. He was sentenced with DEATH 💀`)
         } else {
             audioPlayer.earRape();
             message.channel.send(`👂 watch your ears ! 👂`);
@@ -268,15 +268,15 @@ Bot.on("messageCreate", async (message) => {
 // on all user leave
 Bot.on('voiceStateUpdate', async (oldState, newState) => {
 
-        // if nobody left the channel in question, return.
-        if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel)
-          return;
+        // // if nobody left the channel in question, return.
+        // if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel)
+        //   return;
       
-        if (!oldState.channel.members.size - 1) 
-          setTimeout(() => { // if 1 (you), wait five minutes
-            if (!oldState.channel.members.size - 1 && connection?.state?.status !== "destroyed") // if there's still 1 member, 
-             destroyConnection(connection);
-           }, 1000); 
+        // if (!oldState.channel.members.size - 1) 
+        //   setTimeout(() => { // if 1 (you), wait five minutes
+        //     if (!oldState.channel.members.size - 1 && connection?.state?.status !== "destroyed") // if there's still 1 member, 
+        //      destroyConnection(connection);
+        //    }, 1000); 
 });
 
 async function connectToChannel(channel) {
