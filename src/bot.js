@@ -268,15 +268,17 @@ Bot.on("messageCreate", async (message) => {
 // on all user leave
 Bot.on('voiceStateUpdate', async (oldState, newState) => {
 
-        // // if nobody left the channel in question, return.
-        // if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel)
-        //   return;
+        // if nobody left the channel in question, return.
+        if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel)
+          return;
       
-        // if (!oldState.channel.members.size - 1) 
-        //   setTimeout(() => { // if 1 (you), wait five minutes
-        //     if (!oldState.channel.members.size - 1 && connection?.state?.status !== "destroyed") // if there's still 1 member, 
-        //      destroyConnection(connection);
-        //    }, 1000); 
+        if (!oldState.channel.members.size - 1 === 0) {
+            setTimeout(() => { // if 1 (you), wait five minutes
+                if (!oldState.channel.members.size - 1 && connection?.state?.status !== "destroyed") // if there's still 1 member, 
+                 destroyConnection(connection);
+               }, 1000); 
+        }
+          
 });
 
 async function connectToChannel(channel) {
