@@ -339,7 +339,7 @@ async function getVideoInfoFromKeyword(keyword) {
         return;
     }
     for (let i = 0; i < results.data.items.length; i++) {
-        console.log(results.data.items[i].id);
+        console.log("ID", results.data.items[i].id);
         if (results.data.items[i].id.videoId) {
             return {
                 link: "https://www.youtube.com/watch?v=" + results.data.items[i].id.videoId,
