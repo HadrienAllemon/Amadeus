@@ -98,6 +98,7 @@ Bot.on("messageCreate", async (message) => {
                 console.log(info);
                 return;
             }
+            console.log("link",link);
             link = info.link;
             messageEmbed = new MessageEmbed()
                 .setTitle(`Playing ${info.title} from channel ${info.channel}`)
