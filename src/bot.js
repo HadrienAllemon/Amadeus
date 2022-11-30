@@ -334,7 +334,10 @@ function isValidURL(str) {
 async function getVideoInfoFromKeyword(keyword) {
     const results = await Axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=AIzaSyAp4ygKfnr43aIjl4vUye4pbR4CsuABJ5g`)
     console.log("results", results);
-    if (!results.data.items.length) return;
+    if (!results.data.items.length) {
+        console.error("no results ");
+        return;
+    }
     for (let i = 0; i < results.data.items.length; i++) {
         if (results.data.items[i].id.videoId) {
             return {
