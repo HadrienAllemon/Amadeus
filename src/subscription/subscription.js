@@ -97,7 +97,7 @@ class MusicSubscription {
 
 		this.audioPlayer.on('error', (error) => (error.resource).metadata.onError(error));
 
-		voiceConnection.subscribe(this.audioPlayer);
+		this.voiceConnection.subscribe(this.audioPlayer);
 	}
 
 	/**
