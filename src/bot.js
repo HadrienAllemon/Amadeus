@@ -131,17 +131,7 @@ Bot.on("messageCreate", async (message) => {
         audioPlayer.unpause()
     }
 
-    else if (actualMsg.startsWith("earrape")) {
-        if (!audioPlayer || !connection || !audioPlayer.ressource) return false;
-
-        if (message.author.tag?.toLowerCase() === "orion#0010" || message.author.tag?.toLowerCase() === "gistero#8632"){
-            message.member.voice.disconnect("You tried to rape our ears !");
-            message.channel.send(`${message.author.tag} tried to rape your ears. He was sentenced with DEATH 💀`)
-        } else {
-            audioPlayer.earRape();
-            message.channel.send(`👂 watch your ears ! 👂`);
-        }
-    }
+    
 
     else if (actualMsg.includes("vento d'oro")) {
         // Stop current song 
