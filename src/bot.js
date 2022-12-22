@@ -35,7 +35,7 @@ Bot.on("messageCreate", async (message) => {
 
 
     // ----- Test commands -----
-
+    //
     // Simple hello -- test case
     if (actualMsg == "hello there") {
         message.channel.send('General Kenobi !');
